@@ -39,6 +39,69 @@ You can run the application with Docker Compose using the following commands:
 docker-compose up
 ```
 
+## Create Topic
+
+You can create a topic using the following command:
+
+```shell
+docker exec -it kafka bash
+kafka-topics.sh --bootstrap-server localhost:9092 --create --topic my_first_topic --partitions 1 --replication-factor 1
+
+// List topics
+kafka-topics.sh --bootstrap-server localhost:9092 --list
+```
+
+## Send Message
+
+You can send a message to a topic using the following command:
+
+```shell
+docker exec -it kafka bash
+kafka-console-producer.sh --topic my_first_topic --bootstrap-server localhost:9092
+```
+
+## Consumer List
+
+You can receive a message from a topic using the following command:
+
+```shell
+docker exec -it kafka bash
+kafka-consumer-groups.sh --list --bootstrap-server localhost:9092
+kafka-consumer-groups.sh --describe --group console-consumer-70207 --bootstrap-server localhost:9092
+```
+
+## Partition Modification
+
+You can modify the number of partitions of a topic using the following command:
+
+```shell
+docker exec -it kafka bash
+kafka-topics.sh --bootstrap-server localhost:9092 --alter --topic my_first_topic --partitions 3
+```
+
+## Consumer Group
+
+You can create a consumer group using the following command:
+
+```shell
+docker exec -it kafka bash
+kafka-console-consumer.sh --topic my_first_topic --bootstrap-server localhost:9092 --group my_first_group
+```
+
+## UI for Apache Kafka
+
+You can access the UI for Apache Kafka at [http://localhost:7000](http://localhost:7000).
+
+
+## Reading Messages
+
+You can read messages from a topic using the following command:
+
+```shell
+docker exec -it kafka bash
+kafka-console-consumer.sh --topic my_first_topic --bootstrap-server localhost:9092
+```
+
 ## Accessing the application
 
 You can access the application at [http://localhost:8080](http://localhost:8080).
