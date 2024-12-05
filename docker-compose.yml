@@ -50,6 +50,38 @@ services:
       - kafka
       - zookeeper
 
+  kafka_producer:
+    build:
+      context: ./kafka-producer
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8091:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+    volumes:
+      - ./data/.m2:/root/.m2
+    stdin_open: true
+    tty: true
+    networks:
+      - kafka-net
+
+  kafka_consumer:
+    build:
+      context: ./kafka-consumer
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8092:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+    volumes:
+      - ./data/.m2:/root/.m2
+    stdin_open: true
+    tty: true
+    networks:
+      - kafka-net
+
 volumes:
   zookeeper-data:
   kafka_data:

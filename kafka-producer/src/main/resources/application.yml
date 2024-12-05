@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: kafka-producer
+
+# Kafka Configuration
+  kafka:
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+# Custom Topic Name
+kafka:
+  topic: my-topic
+
+# Create a topic in Kafka. This is a one-time operation.
+# Command: docker exec -it kafka kafka-topics --create --topic my-topic --bootstrap-server localhost:29092 --partitions 1 --replication-factor 1
