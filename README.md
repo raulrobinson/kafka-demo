@@ -102,9 +102,21 @@ docker exec -it kafka bash
 kafka-console-consumer.sh --topic my_first_topic --bootstrap-server localhost:9092
 ```
 
-## Accessing the application
+## Test the application Producer and Consumer Microservices
 
-You can access the application at [http://localhost:8080](http://localhost:8080).
+You can test the application using the following commands:
+
+For the producer microservice:
+
+```shell
+docker exec -it kafka kafka-console-producer --broker-list localhost:29092 --topic test-topic
+```
+
+For the consumer microservice:
+
+```shell
+docker exec -it kafka kafka-console-consumer --bootstrap-server localhost:29092 --topic test-topic --from-beginning
+```
 
 ## Author
 
